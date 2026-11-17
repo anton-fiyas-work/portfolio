@@ -1,10 +1,1182 @@
-<!DOCTYPE html><html lang="ru" style="background-color: rgb(11, 19, 41) !important; background-image: radial-gradient(circle at 15% 20%, rgba(15, 82, 255, 0.22) 0%, transparent 45%), radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.2) 0%, transparent 45%), radial-gradient(circle at 50% 75%, rgba(217, 119, 6, 0.2) 0%, transparent 50%), linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) !important; background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px !important; background-attachment: fixed !important; min-height: 100vh !important;"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Портфолио Антона Фияся: Веб-разработка, Чат-боты, 3D, STL и ЧПУ</title>
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<!-- Премиальный характерный брендинговый шрифт Onest + Manrope + JetBrains Mono -->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Onest:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script></head></html>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Onest:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#0f52ff',
+              emerald: '#10b981',
+              amber: '#d97706',
+              dark: '#0b1329',
+              card: 'rgba(255, 255, 255, 0.95)'
+            }
+          },
+          fontFamily: {
+            sans: ['Onest', 'Manrope', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Safe CSS fallback if CDN is delayed or blocked */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Onest', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0b1329;
+      color: #1e293b;
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    #services-section, #portfolio-section, #contact-section {
+      scroll-margin-top: 90px;
+    }
+    
+    .glass-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .fallback-box {
+      display: none;
+    }
+    
+    /* Ensure modal backdrop and scroll lock */
+    .modal-open {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-[#0b1329] text-slate-800 antialiased selection:bg-blue-600 selection:text-white min-h-screen relative">
+<!-- Background decorative canvas (strictly pointer-events-none and negative z-index) -->
+<div aria-hidden="true" class="fixed inset-0 pointer-events-none -z-10 overflow-hidden" style="background-color: #0b1329; background-image: radial-gradient(circle at 15% 20%, rgba(15, 82, 255, 0.22) 0%, transparent 45%), radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.2) 0%, transparent 45%), radial-gradient(circle at 50% 75%, rgba(217, 119, 6, 0.2) 0%, transparent 50%), linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;"></div>
+<!-- Main Content Container: directly accessible, relative z-10, never zero-height -->
+<main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-6 md:py-10 space-y-8 md:space-y-12">
+<!-- Top Bar Navigation Badge -->
+<header class="glass-card rounded-2xl p-4 md:px-6 md:py-3.5 flex flex-wrap items-center justify-between gap-4 bg-white/95 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-700">
+<a class="hover:text-blue-600 transition-colors" href="#services-section">Сайты</a>
+<span class="text-slate-300">•</span>
+<a class="hover:text-blue-600 transition-colors" href="#services-section">Боты</a>
+<span class="text-slate-300">•</span>
+<a class="hover:text-blue-600 transition-colors" href="#services-section">3D (Рендер, STL, ЧПУ)</a>
+<span class="text-slate-300">›</span>
+<span class="text-blue-600 font-bold">Антон Фиясь</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          На связи онлайн
+        </span>
+<span class="text-xs text-slate-500 hidden sm:inline">Ответ в Telegram ~5 мин</span>
+</div>
+</header>
+<!-- Hero / Profile Card -->
+<section class="glass-card rounded-3xl p-6 md:p-8 bg-white/95 backdrop-blur shadow-xl relative overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Profile Avatar & Details -->
+<div class="lg:col-span-8 flex flex-col sm:flex-row gap-6 items-start">
+<div class="relative w-28 h-28 sm:w-32 sm:h-32 shrink-0 rounded-2xl overflow-hidden border-2 border-slate-200 shadow-md bg-slate-100 flex items-center justify-center">
+<img alt="Антон Фиясь" class="w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaFt50-k5vFfCDQL-0F8v8tt5J9xDY21pPkHMfQJXYGUY4HG-ggwRPGXNMnwuhFTHo-31uHtdyQDqok1_23zwoZpc4hJvS5bEMCr0wIyxTZa8BVp-8f0m77D82JzpA4XA6cYcaHGmMlDmnxM5KlQJSfKspFvt_SaCvRG0_3lB52nvPebZFinGurrbitMXInA2zk_3YAKi6AzgYPJYTaFUWkpG3n-PWLj6BbMaJyEE"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-blue-600 to-indigo-700 flex-col items-center justify-center text-white p-2 text-center">
+<span class="material-symbols-outlined text-4xl">person</span>
+<span class="text-[11px] font-bold mt-1 tracking-wide">АНТОН ФИЯСЬ</span>
+</div>
+<div class="absolute bottom-1 right-1 bg-emerald-500 text-white rounded-full p-0.5 border border-white shadow" title="Проверен">
+<span class="material-symbols-outlined text-sm block">check</span>
+</div>
+</div>
+<div class="space-y-3 flex-1">
+<div class="space-y-1">
+<h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">Антон Фиясь</h1>
+<p class="text-blue-600 font-bold text-sm sm:text-base leading-snug">
+                Веб-разработка • Чат-боты в Telegram • 3D-моделирование (STL под 3D-печать, ЧПУ по дереву и металлу)
+              </p>
+</div>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-medium text-slate-600">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">badge</span>
+                Самозанятый (НПД / безнал по чеку)
+              </span>
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-emerald-600">verified</span>
+                Официальный электронный чек и договор
+              </span>
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">location_on</span>
+                Минск, Беларусь и удаленно
+              </span>
+</div>
+<p class="text-sm text-slate-600 leading-relaxed pt-1">
+              Решаю практические задачи бизнеса: проектирование и подготовка управляющих программ для фрезеровки по дереву (массив дуба/ясени, фанера, МДФ, мебельные фасады, резные элементы, 3D-панно и рельефы), водонепроницаемые STL-файлы для 3D-печати без разрывов, а также запуск конверсионных сайтов под ключ и умных Telegram-ботов с интеграцией CRM.
+            </p>
+</div>
+</div>
+<!-- Contact Actions Column -->
+<div class="lg:col-span-4 flex flex-col gap-3 justify-center bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
+<a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition transform active:scale-95" href="https://t.me/lets_start_acting" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-lg">send</span>
+            Написать в Telegram
+          </a>
+<a class="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-semibold text-sm border border-slate-300 transition" href="#contact-section">
+<span class="material-symbols-outlined text-lg text-slate-600">calculate</span>
+            Рассчитать стоимость
+          </a>
+<a class="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold text-sm border border-emerald-300 transition" href="tel:+375298386850">
+<span class="material-symbols-outlined text-lg text-emerald-600">call</span>
+            +375 (29) 838-68-50
+          </a>
+<div class="text-[11px] text-center text-slate-500 pt-1 flex items-center justify-between px-1">
+<span>Электронный чек / ЕРИП</span>
+<span class="font-mono font-medium text-blue-600">@lets_start_acting</span>
+</div>
+</div>
+</div>
+<!-- Warranty Badges -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 mt-6 border-t border-slate-100">
+<div class="flex items-center gap-3.5 p-3 rounded-xl bg-blue-50/70 border border-blue-100">
+<div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">verified_user</span>
+</div>
+<div>
+<div class="font-bold text-sm text-slate-900">100% соблюдение ТЗ</div>
+<div class="text-xs text-slate-600">Четкие сроки и отчетность</div>
+</div>
+</div>
+<div class="flex items-center gap-3.5 p-3 rounded-xl bg-indigo-50/70 border border-indigo-100">
+<div class="w-10 h-10 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">schedule</span>
+</div>
+<div>
+<div class="font-bold text-sm text-slate-900">14 дней гарантии</div>
+<div class="text-xs text-slate-600">Бесплатные правки после сдачи</div>
+</div>
+</div>
+<div class="flex items-center gap-3.5 p-3 rounded-xl bg-emerald-50/70 border border-emerald-100">
+<div class="w-10 h-10 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">forum</span>
+</div>
+<div>
+<div class="font-bold text-sm text-slate-900">1 на 1 прямой диалог</div>
+<div class="text-xs text-slate-600">Без посредников и менеджеров</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3 Discipline Highlights -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<div class="glass-card rounded-2xl p-5 hover:shadow-lg transition-all border-t-4 border-t-blue-500">
+<div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined">devices</span>
+</div>
+<h3 class="font-bold text-base text-slate-900 mb-1.5">1. Веб-разработка</h3>
+<p class="text-xs text-slate-600 leading-relaxed">
+          Продающие лендинги, интернет-магазины и корпоративные сайты с чистым кодом, скоростью PageSpeed 95+, адаптивной версткой и базовым SEO.
+        </p>
+</div>
+<div class="glass-card rounded-2xl p-5 hover:shadow-lg transition-all border-t-4 border-t-emerald-500">
+<div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<h3 class="font-bold text-base text-slate-900 mb-1.5">2. Чат-боты &amp; Автоматизация</h3>
+<p class="text-xs text-slate-600 leading-relaxed">
+          Telegram-боты для приёма заказов, авто-квалификации лидов, онлайн-записи и сквозной интеграции с Битрикс24, amoCRM и Google Sheets.
+        </p>
+</div>
+<div class="glass-card rounded-2xl p-5 hover:shadow-lg transition-all border-t-4 border-t-amber-500">
+<div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+</div>
+<h3 class="font-bold text-base text-slate-900 mb-1.5">3. 3D, STL &amp; ЧПУ по дереву</h3>
+<p class="text-xs text-slate-600 leading-relaxed">
+          3D-рельефы для станков с ЧПУ (резные панно, мебельные фасады, раскрой фанеры/МДФ, выборка пазов), точные STL/STEP под 3D-печать и фрезеровку.
+        </p>
+</div>
+</section>
+<!-- Services & Pricing Section (with #services-section ID) -->
+<section class="glass-card rounded-3xl p-6 md:p-8 bg-white/95 backdrop-blur shadow-xl space-y-6" id="services-section">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-100 pb-5">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-blue-600">ПРАЙС-ЛИСТ И ТАРИФЫ</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Услуги по направлениям</h2>
+</div>
+<div class="text-xs text-slate-500">
+          Фиксированные цены • Официальный чек самозанятого
+        </div>
+</div>
+<!-- Services Category Filters -->
+<div class="flex flex-wrap gap-2 text-xs font-semibold" id="services-filter-tabs">
+<button class="service-tab-btn active px-3.5 py-1.5 rounded-lg bg-blue-600 text-white transition" data-service-category="all" type="button">Все направления</button>
+<button class="service-tab-btn px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-service-category="web" type="button">1. Веб-разработка</button>
+<button class="service-tab-btn px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-service-category="bot" type="button">2. Чат-боты</button>
+<button class="service-tab-btn px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-service-category="cnc" type="button">3. 3D, STL &amp; ЧПУ по дереву</button>
+</div>
+<!-- Service Cards List -->
+<div class="space-y-4" id="services-list">
+<!-- Service 1: 3D CNC STL -->
+<div class="service-row-item border border-slate-200 rounded-2xl p-5 hover:border-blue-400 hover:shadow-md transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-5" data-category="cnc">
+<div class="space-y-2 flex-1">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-bold text-lg text-slate-900">3D-моделирование для ЧПУ по дереву, раскрой и 3D-печати (STL)</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 uppercase">ЧПУ по дереву / STL / CNC</span>
+</div>
+<p class="text-xs text-slate-600 max-w-2xl leading-relaxed">
+              Создание 3D-рельефов, резных панно, фасадов мебели, параметрических деталей и криволинейного раскроя под фрезерные станки с ЧПУ (массив дуба/ясеня, фанера, МДФ). Подготовка замкнутых STL-мешей без разрывов для 3D-печати, экспорт в DXF, STL, STEP, ArtCAM/Aspire-совместимые форматы.
+            </p>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500 font-medium">
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Фрезеровка массива дуба, ясеня, МДФ и фанеры</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Водонепроницаемый STL (Watertight) для 3D-печати</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> 3D-рельефы, барельефы, раскрой и выборка пазов</span>
+</div>
+</div>
+<div class="text-right shrink-0 w-full md:w-auto flex md:flex-col justify-between items-center md:items-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div>
+<div class="text-2xl font-black text-slate-900">от 90 BYN</div>
+<div class="text-[11px] text-slate-500">Срок: 1-3 рабочих дня</div>
+</div>
+<a class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow transition" href="https://t.me/lets_start_acting?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%203D-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20%D0%A7%D0%9F%D0%A3%20%D0%B8%D0%BB%D0%B8%20STL" rel="noopener noreferrer" target="_blank">
+              Выбрать услугу
+            </a>
+</div>
+</div>
+<!-- Service 2: Landing page -->
+<div class="service-row-item border border-slate-200 rounded-2xl p-5 hover:border-blue-400 hover:shadow-md transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-5" data-category="web">
+<div class="space-y-2 flex-1">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-bold text-lg text-slate-900">Лендинг / Промо-сайт под ключ</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 uppercase">Хит заказов</span>
+</div>
+<p class="text-xs text-slate-600 max-w-2xl leading-relaxed">
+              Продающая посадочная страница с высокой конверсией для услуги или спецпредложения. Быстрая чистая верстка и интеграция с Telegram.
+            </p>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500 font-medium">
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Прототип + дизайн Figma</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Скоростная верстка Tailwind</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Уведомления в Telegram</span>
+</div>
+</div>
+<div class="text-right shrink-0 w-full md:w-auto flex md:flex-col justify-between items-center md:items-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div>
+<div class="text-2xl font-black text-slate-900">от 600 BYN</div>
+<div class="text-[11px] text-slate-500">Срок: 3-5 рабочих дней</div>
+</div>
+<a class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow transition" href="https://t.me/lets_start_acting?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%BB%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3%D0%B0" rel="noopener noreferrer" target="_blank">
+              Выбрать услугу
+            </a>
+</div>
+</div>
+<!-- Service 3: E-commerce -->
+<div class="service-row-item border border-slate-200 rounded-2xl p-5 hover:border-blue-400 hover:shadow-md transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-5" data-category="web">
+<div class="space-y-2 flex-1">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-bold text-lg text-slate-900">Интернет-магазин / E-commerce</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 uppercase">Продажи</span>
+</div>
+<p class="text-xs text-slate-600 max-w-2xl leading-relaxed">
+              Торговая витрина с каталогом, фильтрами, корзиной, приемом оплат через ЕРИП/карты (bePaid) и уведомлениями в Telegram.
+            </p>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500 font-medium">
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Онлайн-оплата (ЕРИП, bePaid)</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Уведомления заказов в чат</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Скоростной мобильный чекаут</span>
+</div>
+</div>
+<div class="text-right shrink-0 w-full md:w-auto flex md:flex-col justify-between items-center md:items-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div>
+<div class="text-2xl font-black text-slate-900">от 2 200 BYN</div>
+<div class="text-[11px] text-slate-500">Срок: 14-25 раб. дней</div>
+</div>
+<a class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow transition" href="https://t.me/lets_start_acting?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" rel="noopener noreferrer" target="_blank">
+              Выбрать услугу
+            </a>
+</div>
+</div>
+<!-- Service 4: Telegram bot -->
+<div class="service-row-item border border-slate-200 rounded-2xl p-5 hover:border-blue-400 hover:shadow-md transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-5" data-category="bot">
+<div class="space-y-2 flex-1">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-bold text-lg text-slate-900">Telegram-бот для заявок и авто-квалификации</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Быстрый старт</span>
+</div>
+<p class="text-xs text-slate-600 max-w-2xl leading-relaxed">
+              Автоматический опрос потенциального клиента, сбор параметров проекта и мгновенная отправка заявки в закрытый рабочий чат или в CRM.
+            </p>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500 font-medium">
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Пошаговый сценарий диалога</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Валидация телефонов и данных</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Интеграция с Google Таблицами / CRM</span>
+</div>
+</div>
+<div class="text-right shrink-0 w-full md:w-auto flex md:flex-col justify-between items-center md:items-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div>
+<div class="text-2xl font-black text-slate-900">от 400 BYN</div>
+<div class="text-[11px] text-slate-500">Срок: 2-4 рабочих дня</div>
+</div>
+<a class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow transition" href="https://t.me/lets_start_acting?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20Telegram-%D0%B1%D0%BE%D1%82" rel="noopener noreferrer" target="_blank">
+              Выбрать услугу
+            </a>
+</div>
+</div>
+<!-- Service 5: 3D Render -->
+<div class="service-row-item border border-slate-200 rounded-2xl p-5 hover:border-blue-400 hover:shadow-md transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-5" data-category="cnc">
+<div class="space-y-2 flex-1">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-bold text-lg text-slate-900">Предметный 3D-рендеринг для каталогов и маркетплейсов</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 uppercase">E-commerce 3D</span>
+</div>
+<p class="text-xs text-slate-600 max-w-2xl leading-relaxed">
+              Фотореалистичные изображения гаджетов, упаковки, мебели и промо-товаров в студийном освещении. Идеально для сайтов и маркетплейсов.
+            </p>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500 font-medium">
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Разрешение 4K Ultra HD</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Реалистичные текстуры материалов</span>
+<span class="inline-flex items-center gap-1"><span class="text-emerald-500 font-bold">✓</span> Рендер на прозрачном фоне</span>
+</div>
+</div>
+<div class="text-right shrink-0 w-full md:w-auto flex md:flex-col justify-between items-center md:items-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div>
+<div class="text-2xl font-black text-slate-900">от 80 BYN</div>
+<div class="text-[11px] text-slate-500">или от 350 BYN/сцена</div>
+</div>
+<a class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow transition" href="https://t.me/lets_start_acting?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%203D-%D1%80%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D0%B8%D0%BD%D0%B3" rel="noopener noreferrer" target="_blank">
+              Выбрать услугу
+            </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Section (with #portfolio-section ID) -->
+<section class="glass-card rounded-3xl p-6 md:p-8 bg-white/95 backdrop-blur shadow-xl space-y-6" id="portfolio-section">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-100 pb-5">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-blue-600">ПРИМЕРЫ ВЫПОЛНЕННЫХ ПРОЕКТОВ</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Портфолио работ</h2>
+</div>
+<!-- Category Filter Buttons -->
+<div class="flex flex-wrap gap-2 text-xs font-semibold" id="portfolio-filter-tabs">
+<button class="portfolio-tab-btn active px-3 py-1.5 rounded-lg bg-blue-600 text-white transition" data-portfolio-category="all" type="button">Все проекты</button>
+<button class="portfolio-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-portfolio-category="web" type="button">Веб-сайты</button>
+<button class="portfolio-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-portfolio-category="bot" type="button">Telegram &amp; Viber-боты</button>
+<button class="portfolio-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-portfolio-category="cnc" type="button">3D, STL &amp; ЧПУ</button>
+</div>
+</div>
+<!-- Portfolio Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="portfolio-grid">
+<!-- Case 1: Зубр -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="cnc" data-desc="3D-сканирование и скульптурирование анатомической модели зубра под 4-осевую фрезеровку. Чистовая полировка датским маслом с проработкой шерсти и фактуры древесины." data-img="images/cnc-bison.jpg" data-tags="4-осевой ЧПУ, STL Watertight, Массив дуба" data-title="Объёмная 3D-скульптура «Белорусский Зубр»">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              ЧПУ 4D / 3D скульптура
+            </span>
+<img alt="Объёмная 3D-скульптура Белорусский Зубр" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS-fB9fKSFqISXRft5yEudd_JQe2ZYk06X3lNlaxeUY51wB2dq9RHmaVGZDIfv6W6TQGhx-LMMT0AHNgN0_tDJBYBVEQgI_DN__P3e7oGlbfnqof7f2PmAibyWDhRqVos-dgMQ1XvL4mYy7n857Pj5lshzIfv9sAiWFIMRGr7VHSIihw9tBpfZQygGyz_9pKMn9HHyJ48IlUsldjJ3BWhvs4wzqHpGP_PfbMqeRW4"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-amber-800 to-amber-950 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-amber-300">view_in_ar</span>
+<span class="font-bold text-sm">3D-скульптура «Зубр»</span>
+<span class="text-[11px] text-amber-200">Массив дуба • 4-осевой ЧПУ</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Объёмная 3D-скульптура «Белорусский Зубр»</h3>
+<span class="text-[11px] font-medium text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Массив дуба</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                3D-сканирование и скульптурирование анатомической модели зубра под 4-осевую фрезеровку. Чистовая полировка датским маслом с проработкой шерсти и фактуры древесины.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">4-осевой ЧПУ</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">STL Watertight</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Массив дуба</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 2: Орк-воитель -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="cnc" data-desc="Высокодетализированная 3D-модель под 4-осевую ЧПУ-фрезеровку из массива ясеня/дуба с последующей ручной шлифовкой, грунтовкой и художественной акриловой росписью миниатюры. Чистовой проход фрезой R0.25, сохранение анатомического рельефа и текстуры." data-img="images/cnc-orc-painted.jpg" data-tags="4-осевой ЧПУ, STL Watertight, Ручная роспись, Массив ясеня / дуба" data-title="Художественная 3D-скульптура «Орк-воитель» (ЧПУ + роспись)">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              ЧПУ по дереву / Фигурка
+            </span>
+<img alt="Художественная 3D-скульптура Орк-воитель" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpTalv3h1FFuk4u6H6ssy43-BlHd5hI3YyXY6g2_KMB0aV7wVW5dmxNL08kHG1_bLjrngz5Ltx53q1Q5AbmXfl9bIbXKXlcjCfaGN604xcsLvuejeDg0TFZjNuCgXxFQw3ustJhcjT5F8jE5O04GVnWZan-vwR2pcDGMLqQ9CH1SnvhJaflu1eEvdNrfQaca5rpdeFTRMBmFUQybNnBebMg_b_h-jEpz-V8lXwEns"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-emerald-900 to-slate-900 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-emerald-400">toys</span>
+<span class="font-bold text-sm">Скульптура «Орк-воитель»</span>
+<span class="text-[11px] text-emerald-200">ЧПУ + художественная роспись</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Художественная 3D-скульптура «Орк-воитель» (ЧПУ + роспись)</h3>
+<span class="text-[11px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Ясень / Дуб</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Высокодетализированная 3D-модель под 4-осевую ЧПУ-фрезеровку из массива ясеня/дуба с последующей ручной шлифовкой, грунтовкой и художественной акриловой росписью миниатюры. Чистовой проход фрезой R0.25, сохранение анатомического рельефа и текстуры.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">4-осевой ЧПУ</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">STL Watertight</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Ручная роспись</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 3: Лидогенератор в Telegram -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="bot" data-desc="Интерактивный опрос входящего трафика с выбором направлений (Веб-сайт, Telegram-бот, ЧПУ по дереву), валидацией контактов и мгновенным пушем карточки лида в amoCRM/Битрикс24." data-img="images/bot-leadgen.jpg" data-tags="Telegram-бот, Python aiogram, Битрикс24 / amoCRM" data-title="Лидогенератор в Telegram — бот-квалификатор заявок">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              Telegram-бот / LeadGen &amp; CRM
+            </span>
+<img alt="Лидогенератор в Telegram" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAedV_ppD6CllrGylW5QrdPEX-tTWFBxNl9_CAZaT-u5zvZYXQK-8lPHGTbKImZMoB11UT1io6jaRJt9CUr5gOUZqjn9BlkY2v9p-C0KXj_2SMKbaxTnFIZJ6RJAHlhHg6jvH1ZwwLbq41NbknnpIHnC6sHF26rtrvnBDSm5XrWACW0kMk4qkhI5jS56Fusoc2mQ4e541q_W0lqsm0Q8HJYa77Whuy7mRcFm0b-1BE"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-blue-900 to-indigo-950 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-blue-400">smart_toy</span>
+<span class="font-bold text-sm">Бот-квалификатор заявок</span>
+<span class="text-[11px] text-blue-200">Python aiogram • CRM Webhook</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Лидогенератор в Telegram — бот-квалификатор заявок</h3>
+<span class="text-[11px] font-medium text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">CRM Webhook</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Интерактивный опрос входящего трафика с выбором направлений (Веб-сайт, Telegram-бот, ЧПУ по дереву), валидацией контактов и мгновенным пушем карточки лида в amoCRM/Битрикс24.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">Telegram-бот</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Python aiogram</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Битрикс24</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 4: Telegram-магазин мебели -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="bot" data-desc="Витрина товаров в чате с карточками изделий из массива дуба, инлайн-кнопками добавления в корзину («В корзину 240 BYN»), расчетом доставки и оплатой через bePaid/ЕРИП." data-img="images/bot-woodshop.jpg" data-tags="E-commerce Bot, Каталог &amp; Корзина, bePaid / ЕРИП" data-title="Telegram-магазин мебели и изделий из дерева с корзиной">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              Telegram-бот / Каталог &amp; E-commerce
+            </span>
+<img alt="Telegram-магазин мебели и изделий из дерева" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwW_0SuuR1D3kutWRpfKqESDcMM5B7yo9l2VHT4J55bbSDhOaxXLBnu62YPGBTm-1Jo1A6rsXcKCCe7fKlKsWD4oGF0VyZa048uH0DVoA7CkIrhWFCgRxdThJo0Hj1iCvP6FqpaKkKBx3GXd57kysaj3Rmw3CWXuktwNhJOzGJZiCHanbK_wixmBuTm03B3PzGd_8DONXvJ_lHP3TfXD7eSFG5i6ze7Of05TepakE"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-amber-900 to-stone-900 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-amber-400">shopping_cart</span>
+<span class="font-bold text-sm">Telegram WoodShop</span>
+<span class="text-[11px] text-amber-200">Корзина • bePaid • ЕРИП</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Telegram-магазин мебели и изделий из дерева с корзиной</h3>
+<span class="text-[11px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Каталог &amp; Корзина</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Витрина товаров в чате с карточками изделий из массива дуба, инлайн-кнопками добавления в корзину («В корзину 240 BYN»), расчетом доставки и оплатой через bePaid/ЕРИП.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">E-commerce Bot</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">bePaid / ЕРИП</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Каталог товаров</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 5: Сервисный бот онлайн-записи ЧПУ -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="bot" data-desc="Интеллектуальная система бронирования времени ЧПУ-раскроя и 3D-моделирования. Онлайн-календарь, динамические временные слоты (10:00, 14:30) и моментальное подтверждение записи." data-img="images/bot-booking.jpg" data-tags="Service Booking, Интерактивный календарь, Google Calendar API" data-title="Сервисный бот онлайн-записи и бронирования слотов ЧПУ">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              Telegram-бот / Онлайн-запись &amp; Слоты
+            </span>
+<img alt="Сервисный бот онлайн-записи и бронирования слотов ЧПУ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_oS3SDXTJsT1ShNY0BgT_b3vHLD8bhAzbeRqQpoPG7YbRAk6D0ybi3twx4t53xecoS0jhNbgQ2vkiwZ_8mi1bgud8UVPrO2nyt-722WYjv6lzF2iTx0n8C2R5QJAmrNdcpjuqy81cD_xVaMhyhIWmRXZFq6gRIBzQ-s9SkUe1rdoY0nWzkSZJ-u7tX2zsckX7nFc2mKcZatjNhWJQzuH9O057r0GS-Qktykr6qbY"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-sky-900 to-indigo-950 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-sky-400">calendar_month</span>
+<span class="font-bold text-sm">Бот онлайн-записи</span>
+<span class="text-[11px] text-sky-200">Google Calendar API</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Сервисный бот онлайн-записи и бронирования слотов ЧПУ</h3>
+<span class="text-[11px] font-medium text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">Интерактивный календарь</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Интеллектуальная система бронирования времени ЧПУ-раскроя и 3D-моделирования. Онлайн-календарь, динамические временные слоты (10:00, 14:30) и моментальное подтверждение записи.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">Service Booking</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Календарь</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">API</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 6: Viber & Telegram-бот сервисной поддержки -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="bot" data-desc="Быстрый выбор блюд из меню, геолокация адреса доставки, быстрая авторизация по белорусскому номеру телефона в Viber Bot API и сквозная синхронизация базы заказов." data-img="images/bot-viber.jpg" data-tags="Viber Bot API, Python FastAPI, Омниканальность" data-title="Viber &amp; Telegram-бот сервисной поддержки и доставки">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              Viber-бот / Омниканальность
+            </span>
+<img alt="Viber &amp; Telegram-бот сервисной поддержки и доставки" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPdCyIXzz2lU2tl28Nspq07NA5Fi5LtjjxvQBElpta-Q5swUFiaVaYb_6yDEwFaivvlwvvFHgiHT9Pfno_L2sS2gzP_ffrq7K68YsLYf_WIqnVXG1FXMZ-b6idocQGVZk4pMHwZ0Qg02Lo4281FFKdTC8vdC7mUd9G7TndpOWB_HMbd00G9sjTQyXiPgPrijXVXdL0Hrg81btTmDICHdaxc9Lvsqsq4SA05vBLPeU"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-purple-900 to-indigo-950 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-purple-400">forum</span>
+<span class="font-bold text-sm">Viber &amp; Telegram Support</span>
+<span class="text-[11px] text-purple-200">Омниканальная доставка</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Viber &amp; Telegram-бот сервисной поддержки и доставки</h3>
+<span class="text-[11px] font-medium text-purple-800 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">Сеть пиццерий &amp; Ритейл</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Быстрый выбор блюд из меню, геолокация адреса доставки, быстрая авторизация по белорусскому номеру телефона в Viber Bot API и сквозная синхронизация базы заказов.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">Viber Bot API</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">FastAPI</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Омниканальность</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 7: Панорама Гомеля -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="cnc" data-desc="Многослойный резной барельеф дворцово-паркового ансамбля Румянцевых-Паскевичей и набережной Сожа. Оптимизированные проходы конической фрезой R0.25 без сколов мелких арок." data-img="images/cnc-gomel.jpg" data-tags="3D барельеф, ArtCAM / Aspire, Ясень 40 мм" data-title="Архитектурный рельеф «Панорама Гомеля»">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              ЧПУ по дереву / Барельеф
+            </span>
+<img alt="Архитектурный рельеф Панорама Гомеля" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcyOirRgao81KMh8ny5qcfcNgYoefoQ3e5Je4O9wR95A-Z1-F6Eq2nnisy8dDzyV_Es94RqDvfY_-sR3fBt415X8BThWpWIyaezi496OijWlu2H-tbmDUlvtVESWUwf-yQ3gDIjPLObLUX_6EOgytAB_zz1PjVvBIACimBDtxlUoNdIQDC90dEhwbl6JclYgdYVgNFoHAbXII0h-jNZyKRgvR_-i7U27sGVBelunQ"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-amber-950 to-stone-900 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-amber-300">account_balance</span>
+<span class="font-bold text-sm">Барельеф «Панорама Гомеля»</span>
+<span class="text-[11px] text-amber-200">Массив ясеня 40 мм</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Архитектурный рельеф «Панорама Гомеля»</h3>
+<span class="text-[11px] font-medium text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Массив ясеня</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Многослойный резной барельеф дворцово-паркового ансамбля Румянцевых-Паскевичей и набережной Сожа. Оптимизированные проходы конической фрезой R0.25 без сколов мелких арок.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">3D барельеф</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Aspire / ArtCAM</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Ясень 40 мм</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 8: WoodArt CNC Панно -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="cnc" data-desc="Проектирование высокодетализированного рельефа, оптимизация траекторий под черновую и чистовую коническую фрезу. Чистота поверхности без ворса." data-img="images/cnc-woodart.jpg" data-tags="ЧПУ по дереву, 3D рельеф, STL / DXF, Массив дуба" data-title="WoodArt CNC — Параметрическое 3D-панно на ЧПУ">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              ЧПУ по дереву / 3D-рельеф
+            </span>
+<img alt="Параметрическое 3D-панно на ЧПУ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaWAPDtHWDPQpEEmNGsrfsifzFT3Nrey3qCb3bJIjn5fqi969gLFsgg0hRiELvM1OagRqiJJJ-eJK_rvVc0_Cot2GlNg33ETUu9Zx1HbWwcOBgYg9-_RRYNAAebPL4n_7ubm5UidUytf5yG0V6C86b0A4Cb0Kkuga0_4OfLVeuu_DUNETtlULw8XuUrM1bgbely-4Nrs8Jo6Cq3nSQA6P5bpt0KJHfoKl87yljIKw"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-orange-950 to-stone-900 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-orange-400">carpenter</span>
+<span class="font-bold text-sm">3D-панно WoodArt</span>
+<span class="text-[11px] text-orange-200">Массив дуба • STL / DXF</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">WoodArt CNC — Параметрическое 3D-панно на ЧПУ</h3>
+<span class="text-[11px] font-medium text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Массив дуба</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Проектирование высокодетализированного рельефа, оптимизация траекторий под черновую и чистовую коническую фрезу. Чистота поверхности без ворса.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">ЧПУ по дереву</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">3D рельеф</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">STL / DXF</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 9: ПромДеталь -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="cnc" data-desc="Параметрическое твердотельное моделирование нагруженного кронштейна под 4-осевую ЧПУ-фрезеровку из сплава Д16Т с замкнутым STL-файлом для контрольной примерки." data-img="images/cad-bracket.jpg" data-tags="STEP / IGES, STL Watertight, ЧПУ фрезеровка" data-title="ПромДеталь — CAD/CAM модель кронштейна под ЧПУ и STL">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              3D-моделирование / ЧПУ &amp; STL
+            </span>
+<img alt="CAD/CAM модель кронштейна под ЧПУ и STL" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDURvqQw9gB1dyp-3KbNQYgda-0twHC2M8YxS7TwTDBYVn7P8zz_BDRusJMIWWESvmP5w2__-DmVEi89b3QZCrk9YMnj3mmp32vbtI7sb67TnOzu53MFXZc3dTgQo_xYrwAB6BnbhjWpGMxAGANycl5P5FerCvfcI-HCl7fPp8xIbVkujltMkdNXf_ZwHnO5zgC_ttpKViM9GgYDOCs-2cf3pGGIS5pE73VzJNnntg"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-cyan-950 to-slate-900 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-cyan-400">architecture</span>
+<span class="font-bold text-sm">CAD Кронштейн</span>
+<span class="text-[11px] text-cyan-200">Точность 0.05 мм • STEP / STL</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">ПромДеталь — CAD/CAM модель кронштейна под ЧПУ и STL</h3>
+<span class="text-[11px] font-medium text-cyan-800 bg-cyan-50 px-2 py-0.5 rounded border border-cyan-200">Точность 0.05 мм</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Параметрическое твердотельное моделирование нагруженного кронштейна под 4-осевую ЧПУ-фрезеровку из сплава Д16Т с замкнутым STL-файлом для контрольной примерки.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">STEP / IGES</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">STL Watertight</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">ЧПУ фрезеровка</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 10: EcoStore -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="web" data-desc="Комплексная разработка интернет-магазина с фильтрацией каталога по ингредиентам, мгновенным мобильным чекаутом и интеграцией уведомлений в Telegram." data-img="images/web-ecostore.jpg" data-tags="Next.js, Tailwind CSS, Telegram API, ЕРИП / bePaid" data-title="EcoStore — магазин органической косметики">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              Веб-сайт / E-commerce
+            </span>
+<img alt="EcoStore магазин органической косметики" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATYCCnkD4-9x1IXykn1L8dTybgRI95kTEqL6LokGL-ZdDr8F-s3Y_SccPmZR-KTsb2Mj78HmG1F_yijkVZBnSZ7QOAKBeb3g-XErNJvXbOke3-7lzeqpSfSnNrhtNiq6W91ggcp36BAe9MnS-ODplMipXXf1tX9eaF1t2BEPeq4Mc1W6o5QBS35CZHxr-L0ozplLjbZ55o9NVwz8w-kaW3y5i4FnLTVUEfFxFGeu8"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-emerald-900 to-teal-950 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-emerald-300">shopping_bag</span>
+<span class="font-bold text-sm">Интернет-магазин EcoStore</span>
+<span class="text-[11px] text-emerald-200">Next.js • Tailwind CSS • bePaid</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">EcoStore — магазин органической косметики</h3>
+<span class="text-[11px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">ЕРИП / bePaid</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Комплексная разработка интернет-магазина с фильтрацией каталога по ингредиентам, мгновенным мобильным чекаутом и интеграцией уведомлений в Telegram.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">Next.js</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Tailwind CSS</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Telegram API</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 11: Nordic Wood -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="web" data-desc="Интерактивный расчет стоимости столов и стеллажей из массива, каталог фрезы изделий, адаптивная верстка и сквозная синхронизация заявок с Telegram." data-img="images/web-nordicwood.jpg" data-tags="Vue 3 / Vite, Tailwind CSS, Telegram API" data-title="Nordic Wood — мебель из массива под заказ">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              Веб-сайт / Калькулятор &amp; Каталог
+            </span>
+<img alt="Nordic Wood мебель из массива" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1x64N1G48bgS6efsaNH7B-heD2iI8t20BrEUtg9tQoNu4crCjXQKfJS24t9-e-ffqTDfgFbCWeWka6h9mrBjWjB9C3_1-trZ863e-6ODZuIxXxU2XITEK_WhiGs7w6mq0a-TysW5SvdvTaS6GnYFTqBx7reYJ3zAcBN519TWs6VP0raxCu4xCUuYoHOgD1Pj6HWq8mV1PMKnRLrno3GyoEnbm3l-iGgFy8VG1PGg"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-amber-900 to-slate-900 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-amber-300">table_restaurant</span>
+<span class="font-bold text-sm">Сайт Nordic Wood</span>
+<span class="text-[11px] text-amber-200">Калькулятор мебели • Telegram API</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Nordic Wood — мебель из массива под заказ</h3>
+<span class="text-[11px] font-medium text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Калькулятор &amp; CRM</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Интерактивный расчет стоимости столов и стеллажей из массива, каталог фрезы изделий, адаптивная верстка и сквозная синхронизация заявок с Telegram.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">Vue 3 / Vite</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Tailwind CSS</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Telegram API</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Case 12: Apex Audio Studio -->
+<article class="portfolio-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col bg-white" data-category="cnc" data-desc="Предметный рендеринг беспроводных наушников премиум-класса с точной проработкой матового софт-тач пластика и анодированного металла." data-img="images/3d-headphones.jpg" data-tags="Blender 3D, Cycles 4K, Substance, 4K Octane" data-title="Apex Audio Studio — 3D рендер наушников">
+<div class="relative h-56 bg-slate-100 overflow-hidden group">
+<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+              3D-рендеринг / Предметный
+            </span>
+<img alt="Apex Audio Studio 3D рендер наушников" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrxZQIJkbY2_PGnVO9IgE-7YVI5NNkH2YCTarvHAXinndtdL6vWw6A4A8fLh6RS-SE3UdYdEnaGmlYePfZuzTN-c46bxuiUnSaWSZhZ2p-AK66RlIn-ReUKstO5oUoDv7mURGw2vdBG69aqzJ5FkMbp3igl-21LXHL_BqgZF__WkpyYzQIzCGBPIHA8UJkO0dnt8c5GvoLT_gBiVf0tv9bA7448lwSvSLgE22COfo"/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-stone-900 to-zinc-950 flex flex-col items-center justify-center text-white p-4 text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-indigo-400">headphones</span>
+<span class="font-bold text-sm">Apex Audio Studio 3D</span>
+<span class="text-[11px] text-zinc-300">Blender 3D Cycles 4K</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<h3 class="font-bold text-base text-slate-900">Apex Audio Studio — 3D рендер наушников</h3>
+<span class="text-[11px] font-medium text-indigo-800 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">4K Octane</span>
+</div>
+<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                Предметный рендеринг беспроводных наушников премиум-класса с точной проработкой матового софт-тач пластика и анодированного металла.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100">
+<div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-500">
+<span class="bg-slate-100 px-2 py-0.5 rounded">Blender 3D</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Cycles 4K</span>
+<span class="bg-slate-100 px-2 py-0.5 rounded">Substance</span>
+</div>
+<button class="case-open-btn inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition" type="button">
+                Подробнее <span>→</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Combo notice badge -->
+<div class="p-4 rounded-xl bg-blue-50/70 border border-blue-200/80 text-center text-xs font-medium text-blue-900 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base text-blue-600">check_circle</span>
+        Нужен комплексный результат? Например: сайт + Telegram-бот или STL-модели под производство со скидкой.
+      </div>
+</section>
+<!-- Client Reviews Section -->
+<section class="glass-card rounded-3xl p-6 md:p-8 bg-white/95 backdrop-blur shadow-xl space-y-6">
+<div class="border-b border-slate-100 pb-4">
+<span class="text-xs font-bold uppercase tracking-wider text-blue-600">РЕПУТАЦИЯ И ОПЫТ</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Отзывы клиентов</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Review 1 -->
+<div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between space-y-4">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-blue-600">Веб-разработка</span>
+<div class="text-amber-400 text-xs tracking-widest">★★★★★</div>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed italic">
+              «Антон сделал интернет-магазин с каталогом автозапчастей. Сайт открывается моментально, чек самозанятого предоставлен сразу же. Сдали проект раньше срока на два дня!»
+            </p>
+</div>
+<div class="flex items-center gap-3 pt-2 border-t border-slate-200/60">
+<div class="w-9 h-9 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center">ВМ</div>
+<div>
+<div class="text-xs font-bold text-slate-900">Виктор Мартынов</div>
+<div class="text-[10px] text-slate-500">EcoStore / Автозапчасти</div>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between space-y-4">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-emerald-600">Telegram-боты</span>
+<div class="text-amber-400 text-xs tracking-widest">★★★★★</div>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed italic">
+              «Заказывали бота для сбора лидов с рекламы с прямой отправкой в Битрикс24. Всё работает как часы: ни одной потерянной заявки. Менеджеры теперь получают готовый портрет клиента.»
+            </p>
+</div>
+<div class="flex items-center gap-3 pt-2 border-t border-slate-200/60">
+<div class="w-9 h-9 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">ОК</div>
+<div>
+<div class="text-xs font-bold text-slate-900">Ольга Ковалева</div>
+<div class="text-[10px] text-slate-500">Руководитель отдела продаж</div>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between space-y-4">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-amber-600">3D, STL &amp; ЧПУ по дереву</span>
+<div class="text-amber-400 text-xs tracking-widest">★★★★★</div>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed italic">
+              «Заказывали 3D-модель резного топографического панно из массива дуба под ЧПУ и STL файл прототипа. Траектории фрезы просчитаны идеально, поверхность получилась гладкой без прижогов и ворса!»
+            </p>
+</div>
+<div class="flex items-center gap-3 pt-2 border-t border-slate-200/60">
+<div class="w-9 h-9 rounded-full bg-amber-600 text-white font-bold text-xs flex items-center justify-center">ПД</div>
+<div>
+<div class="text-xs font-bold text-slate-900">Павел Денисов</div>
+<div class="text-[10px] text-slate-500">WoodCraft Studio / Мебельное производство</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Cooperation Process & Price Calculator Form -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6" id="contact-section">
+<!-- Left: Cooperation Workflow -->
+<section class="lg:col-span-5 glass-card rounded-3xl p-6 md:p-8 bg-white/95 backdrop-blur shadow-xl space-y-5">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-blue-600">ПРОЗРАЧНОСТЬ ПРОЦЕССА</span>
+<h2 class="text-2xl font-extrabold text-slate-900 mt-1">Как строится сотрудничество</h2>
+</div>
+<div class="space-y-4 relative">
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0 border border-blue-200">1</div>
+<div>
+<h4 class="font-bold text-sm text-slate-900">Обсуждение задачи и бриф</h4>
+<p class="text-xs text-slate-600 mt-0.5">Короткий конструктивный бриф без лишней воды. Фиксируем точные требования, допуски, стоимость и дедлайн до начала работы.</p>
+</div>
+</div>
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0 border border-blue-200">2</div>
+<div>
+<h4 class="font-bold text-sm text-slate-900">Концепт, прототип или тестовая сетка</h4>
+<p class="text-xs text-slate-600 mt-0.5">Показываю прототип сайта в Figma, логику бота или базовую геометрию/сетку STL для согласования перед финализацией.</p>
+</div>
+</div>
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0 border border-blue-200">3</div>
+<div>
+<h4 class="font-bold text-sm text-slate-900">Разработка, CAD/CAM и интеграции</h4>
+<p class="text-xs text-slate-600 mt-0.5">Чистый код, настройка Telegram API и CRM, построение CAD-моделей под ЧПУ и проверка STL на замкнутость (Watertight).</p>
+</div>
+</div>
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0 border border-blue-200">4</div>
+<div>
+<h4 class="font-bold text-sm text-slate-900">Передача исходников, запуск и чек</h4>
+<p class="text-xs text-slate-600 mt-0.5">Развертывание на вашем домене, передача STEP/STL файлов и доступов, выдача официального электронного чека самозанятого и 14 дней поддержки.</p>
+</div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-center gap-2.5">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
+<span>Все исходные файлы, дизайн-макеты, CAD/STEP/STL модели и программный код переходят в полную собственность заказчика.</span>
+</div>
+</section>
+<!-- Right: Interactive Calculation Form -->
+<section class="lg:col-span-7 glass-card rounded-3xl p-6 md:p-8 bg-white/95 backdrop-blur shadow-xl space-y-5">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-blue-600">ПРЯМОЙ РАСЧЕТ</span>
+<h2 class="text-2xl font-extrabold text-slate-900 mt-1">Рассчитать стоимость проекта</h2>
+<p class="text-xs text-slate-500 mt-0.5">Опишите задачу — отвечу с точной сметой и рекомендациями.</p>
+</div>
+<form class="space-y-4" id="calc-form">
+<!-- Service Direction -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold text-slate-700">Направление / Услуга</label>
+<select class="w-full text-xs rounded-xl border-slate-300 focus:border-blue-500 focus:ring-blue-500 bg-slate-50 p-2.5" id="form-direction">
+<option value="3D-моделирование под ЧПУ и STL">3D-моделирование для ЧПУ (по дереву/STL) — от 90 BYN</option>
+<option value="Лендинг под ключ">Лендинг / Промо-сайт под ключ — от 600 BYN</option>
+<option value="Интернет-магазин / E-commerce">Интернет-магазин / E-commerce — от 2 200 BYN</option>
+<option value="Telegram-бот для заявок">Telegram-бот для заявок и CRM — от 400 BYN</option>
+<option value="Предметный 3D-рендеринг">Предметный 3D-рендеринг — от 80 BYN</option>
+<option value="Комплексный проект (Сайт + Бот + 3D)">Комплексный проект (Сайт + Бот + 3D)</option>
+</select>
+</div>
+<!-- Budget estimation selector -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold text-slate-700">Ориентировочный бюджет</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-semibold" id="budget-buttons">
+<button class="budget-btn p-2 rounded-lg border border-slate-200 text-slate-700 hover:border-blue-400 transition" data-budget="до 600 BYN" type="button">до 600 BYN</button>
+<button class="budget-btn active p-2 rounded-lg border border-blue-600 bg-blue-600 text-white transition" data-budget="600–1500 BYN" type="button">600–1500</button>
+<button class="budget-btn p-2 rounded-lg border border-slate-200 text-slate-700 hover:border-blue-400 transition" data-budget="1500–3000 BYN" type="button">1500–3000</button>
+<button class="budget-btn p-2 rounded-lg border border-slate-200 text-slate-700 hover:border-blue-400 transition" data-budget="от 3000 BYN" type="button">от 3000 BYN</button>
+</div>
+<input id="selected-budget" type="hidden" value="600–1500 BYN"/>
+</div>
+<!-- Description -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold text-slate-700">Краткое описание задачи</label>
+<textarea class="w-full text-xs rounded-xl border-slate-300 focus:border-blue-500 focus:ring-blue-500 bg-slate-50 p-2.5" id="form-desc" placeholder="Например: 3D-рельеф панно под ЧПУ из ясеня или сайт с интеграцией бота..." rows="3"></textarea>
+</div>
+<!-- Contacts -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold text-slate-700">Телефон или Telegram (@username)</label>
+<input class="w-full text-xs rounded-xl border-slate-300 focus:border-blue-500 focus:ring-blue-500 bg-slate-50 p-2.5 font-mono" id="form-contact" placeholder="@lets_start_acting или +375 (29) 838-68-50" type="text"/>
+</div>
+<!-- Submit Button -->
+<button class="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition transform active:scale-95" id="submit-telegram-btn" type="button">
+<span class="material-symbols-outlined text-lg">send</span>
+            Отправить заявку в Telegram
+          </button>
+<p class="text-[11px] text-center text-slate-500">
+            При нажатии откроется чат со мной с уже заполненным текстом вашей заявки
+          </p>
+<div class="text-center pt-1 text-[11px] text-slate-500">
+            Прямое общение с исполнителем без спама и посредников.
+          </div>
+</form>
+</section>
+</div>
+<!-- Footer -->
+<footer class="pt-6 pb-12 border-t border-slate-800/60 text-xs text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4">
+<div>
+        © 2024–2025 Антон Фиясь. Веб-разработка • Telegram-боты • 3D, STL &amp; ЧПУ по дереву.
+      </div>
+<div class="flex items-center gap-4 text-slate-400">
+<span>Самозанятый (НПД). Минск, Беларусь и удаленно.</span>
+<a class="text-blue-400 hover:text-blue-300 font-mono" href="https://t.me/lets_start_acting" rel="noopener noreferrer" target="_blank">@lets_start_acting</a>
+</div>
+</footer>
+</main>
+<!-- Modal for Case Details (Vanilla JS) -->
+<div aria-modal="true" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm" id="case-modal" role="dialog">
+<div class="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 animate-fadeIn">
+<div class="p-5 border-b border-slate-100 flex items-center justify-between">
+<h3 class="font-extrabold text-base md:text-lg text-slate-900" id="modal-title">Детали проекта</h3>
+<button class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition" id="modal-close" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
+<div class="relative h-64 rounded-2xl bg-slate-100 overflow-hidden flex items-center justify-center" id="modal-img-container">
+<img alt="Детали проекта" class="w-full h-full object-cover" id="modal-img" src=""/>
+<div class="fallback-box w-full h-full bg-gradient-to-tr from-slate-800 to-blue-900 flex-col items-center justify-center text-white p-4 text-center" id="modal-fallback">
+<span class="material-symbols-outlined text-5xl mb-2 text-blue-300">visibility</span>
+<span class="font-bold text-sm">Просмотр кейса</span>
+</div>
+</div>
+<p class="text-xs sm:text-sm text-slate-600 leading-relaxed" id="modal-desc"></p>
+<div class="space-y-2">
+<div class="text-xs font-bold text-slate-700">Использованный стек и технологии:</div>
+<div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-600" id="modal-tags"></div>
+</div>
+</div>
+<div class="p-4 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+<div class="text-xs text-slate-500">Хотите заказать подобное решение?</div>
+<a class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow transition inline-flex items-center gap-1.5" href="https://t.me/lets_start_acting" id="modal-tg-link" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm">send</span>
+          Обсудить в Telegram
+        </a>
+</div>
+</div>
+</div>
+<!-- Safe Vanilla JS Script Wrapped in DOMContentLoaded -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Service tabs filter
+      const serviceButtons = document.querySelectorAll('.service-tab-btn');
+      const serviceRows = document.querySelectorAll('.service-row-item');
+
+      serviceButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          serviceButtons.forEach(b => {
+            b.classList.remove('bg-blue-600', 'text-white', 'active');
+            b.classList.add('bg-slate-100', 'text-slate-700');
+          });
+          btn.classList.add('bg-blue-600', 'text-white', 'active');
+          btn.classList.remove('bg-slate-100', 'text-slate-700');
+
+          const category = btn.getAttribute('data-service-category');
+          serviceRows.forEach(row => {
+            if (category === 'all' || row.getAttribute('data-category') === category) {
+              row.style.display = 'flex';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 2. Portfolio tabs filter
+      const portfolioButtons = document.querySelectorAll('.portfolio-tab-btn');
+      const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+      portfolioButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          portfolioButtons.forEach(b => {
+            b.classList.remove('bg-blue-600', 'text-white', 'active');
+            b.classList.add('bg-slate-100', 'text-slate-700');
+          });
+          btn.classList.add('bg-blue-600', 'text-white', 'active');
+          btn.classList.remove('bg-slate-100', 'text-slate-700');
+
+          const category = btn.getAttribute('data-portfolio-category');
+          portfolioCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 3. Budget selector buttons
+      const budgetButtons = document.querySelectorAll('.budget-btn');
+      const selectedBudgetInput = document.getElementById('selected-budget');
+
+      budgetButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          budgetButtons.forEach(b => {
+            b.classList.remove('bg-blue-600', 'text-white', 'active', 'border-blue-600');
+            b.classList.add('border-slate-200', 'text-slate-700');
+          });
+          btn.classList.add('bg-blue-600', 'text-white', 'active', 'border-blue-600');
+          btn.classList.remove('border-slate-200', 'text-slate-700');
+          if (selectedBudgetInput) {
+            selectedBudgetInput.value = btn.getAttribute('data-budget');
+          }
+        });
+      });
+
+      // 4. Modal handler
+      const modal = document.getElementById('case-modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalImg = document.getElementById('modal-img');
+      const modalFallback = document.getElementById('modal-fallback');
+      const modalTags = document.getElementById('modal-tags');
+      const modalClose = document.getElementById('modal-close');
+      const modalTgLink = document.getElementById('modal-tg-link');
+
+      document.querySelectorAll('.portfolio-card').forEach(card => {
+        const openBtn = card.querySelector('.case-open-btn');
+        const triggerOpen = () => {
+          const title = card.getAttribute('data-title') || '';
+          const desc = card.getAttribute('data-desc') || '';
+          const tags = (card.getAttribute('data-tags') || '').split(',').map(t => t.trim());
+          const img = card.getAttribute('data-img') || '';
+
+          if (modalTitle) modalTitle.textContent = title;
+          if (modalDesc) modalDesc.textContent = desc;
+
+          if (modalTags) {
+            modalTags.innerHTML = '';
+            tags.forEach(t => {
+              if (t) {
+                const badge = document.createElement('span');
+                badge.className = 'px-2 py-0.5 rounded bg-slate-100 text-slate-700';
+                badge.textContent = t;
+                modalTags.appendChild(badge);
+              }
+            });
+          }
+
+          if (modalImg) {
+            modalImg.style.display = 'block';
+            if (modalFallback) modalFallback.style.display = 'none';
+            modalImg.src = img;
+            modalImg.onerror = () => {
+              modalImg.style.display = 'none';
+              if (modalFallback) modalFallback.style.display = 'flex';
+            };
+          }
+
+          if (modalTgLink) {
+            modalTgLink.href = 'https://t.me/lets_start_acting?text=' + encodeURIComponent('Здравствуйте! Заинтересовал ваш кейс: ' + title);
+          }
+
+          if (modal) {
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+          }
+        };
+
+        if (openBtn) {
+          openBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            triggerOpen();
+          });
+        }
+      });
+
+      const closeModal = () => {
+        if (modal) {
+          modal.classList.add('hidden');
+          document.body.classList.remove('modal-open');
+        }
+      };
+
+      if (modalClose) modalClose.addEventListener('click', closeModal);
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+
+      // 5. Submit form direct to Telegram
+      const submitBtn = document.getElementById('submit-telegram-btn');
+      if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+          const dir = document.getElementById('form-direction')?.value || '';
+          const budget = document.getElementById('selected-budget')?.value || '';
+          const desc = document.getElementById('form-desc')?.value || 'Не указано';
+          const contact = document.getElementById('form-contact')?.value || 'Не указан';
+
+          const text = `Здравствуйте, Антон!\nЗаявка с сайта-портфолио:\n• Услуга: ${dir}\n• Бюджет: ${budget}\n• Задача: ${desc}\n• Контакт: ${contact}`;
+          const url = `https://t.me/lets_start_acting?text=${encodeURIComponent(text)}`;
+          window.open(url, '_blank');
+        });
+      }
+    });
+  </script>
+</body></html>
