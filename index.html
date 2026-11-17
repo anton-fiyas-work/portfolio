@@ -56,9 +56,54 @@
     }
     ::-webkit-scrollbar { display: none; }
   </style>
-</head>
-<body class="bg-surface font-sans text-on-surface antialiased min-h-screen selection:bg-primary-container selection:text-white">
-<main class="w-full pt-6 md:pt-10 pb-16">
+<style id="interactive-dynamics-style">
+  .service-card, .portfolio-item {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+  }
+  .service-card:hover, .portfolio-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -8px rgba(0, 61, 203, 0.1), 0 8px 16px -6px rgba(0, 0, 0, 0.04);
+  }
+  .shimmer-cta {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-cta::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: rotate(25deg);
+    transition: none;
+    pointer-events: none;
+  }
+  .shimmer-cta:hover::after {
+    left: 130%;
+    transition: all 0.75s ease-in-out;
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.6); opacity: 0; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  .status-ring {
+    position: relative;
+    display: inline-flex;
+  }
+  .status-ring::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background-color: currentColor;
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style></head>
+<body class="bg-surface font-sans text-on-surface antialiased min-h-screen selection:bg-primary-container selection:text-white"><div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true"><div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full bg-primary/5 blur-3xl" style="animation: ambient-breathe 6s ease-in-out infinite alternate;"></div><div class="absolute top-[35%] -right-[15%] w-[50vw] h-[50vw] rounded-full bg-secondary/5 blur-3xl" style="animation: ambient-breathe 8s ease-in-out infinite alternate-reverse;"></div><div class="absolute -bottom-[15%] left-[20%] w-[55vw] h-[55vw] rounded-full bg-primary/4 blur-3xl" style="animation: ambient-breathe 7s ease-in-out infinite alternate;"></div><style>@keyframes ambient-breathe { 0% { transform: scale(0.92) translate(0, 0); opacity: 0.55; } 50% { transform: scale(1.08) translate(15px, -15px); opacity: 0.95; } 100% { transform: scale(1.0) translate(-10px, 10px); opacity: 0.7; } }</style></div>
+<main class="w-full pt-6 md:pt-10 pb-16 relative">
 <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
 <!-- Breadcrumbs & Status -->
 <section class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-low px-5 py-3.5 rounded-xl border border-surface-container shadow-xs">
@@ -70,10 +115,7 @@
 <span class="text-on-surface font-bold">Антон Фиясь</span>
 </div>
 <div class="flex items-center gap-2 shrink-0">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold tracking-tight">
-<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-            На связи онлайн
-          </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold tracking-tight"><span class="relative flex h-2 w-2 items-center justify-center mr-0.5 text-secondary status-ring"><span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span></span> На связи онлайн</span>
 <span class="text-xs text-on-surface-variant font-medium whitespace-nowrap">Ответ в Telegram ~5 мин</span>
 </div>
 </section>
@@ -117,7 +159,7 @@
 </div>
 <!-- Action CTA -->
 <div class="w-full lg:w-72 shrink-0 flex flex-col gap-3 bg-surface-container-low p-5 rounded-2xl border border-surface-container shadow-xs">
-<a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary-container text-white font-bold text-sm hover:bg-primary transition shadow-sm" href="https://t.me/lets_start_acting" rel="noopener noreferrer" target="_blank">
+<a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary-container text-white font-bold text-sm hover:bg-primary transition shadow-sm shimmer-cta" href="https://t.me/lets_start_acting" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-[18px]">send</span>
               Написать в Telegram
             </a>
@@ -134,46 +176,9 @@
 <span class="font-mono text-primary font-bold">@lets_start_acting</span>
 </div>
 </div>
-</div>
+</div><div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2"><div class="bg-surface-container-low/70 border border-surface-container rounded-2xl p-4 flex items-center gap-3.5 shadow-xs"><div class="w-11 h-11 rounded-xl bg-surface-container-lowest shadow-xs flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-secondary text-[24px]">check_circle</span></div><div><div class="text-lg font-extrabold text-on-surface leading-tight tracking-tight">100%</div><div class="text-xs text-on-surface-variant font-medium mt-0.5">Соблюдение ТЗ и сроков</div></div></div><div class="bg-surface-container-low/70 border border-surface-container rounded-2xl p-4 flex items-center gap-3.5 shadow-xs"><div class="w-11 h-11 rounded-xl bg-surface-container-lowest shadow-xs flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-primary text-[24px]">verified_user</span></div><div><div class="text-lg font-extrabold text-on-surface leading-tight tracking-tight">14 дней</div><div class="text-xs text-on-surface-variant font-medium mt-0.5">Гарантия после сдачи</div></div></div><div class="bg-surface-container-low/70 border border-surface-container rounded-2xl p-4 flex items-center gap-3.5 shadow-xs"><div class="w-11 h-11 rounded-xl bg-surface-container-lowest shadow-xs flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-primary text-[24px]">handshake</span></div><div><div class="text-lg font-extrabold text-on-surface leading-tight tracking-tight">1 на 1</div><div class="text-xs text-on-surface-variant font-medium mt-0.5">Прямой диалог с автором</div></div></div></div>
 <!-- Metrics Row -->
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-4 border-t border-surface-container">
-<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl border border-surface-container/60 min-w-0">
-<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary shadow-xs shrink-0">
-<span class="material-symbols-outlined text-[22px]">terminal</span>
-</div>
-<div class="min-w-0 flex-1">
-<div class="text-xl font-extrabold text-on-surface tracking-tight leading-none">45+</div>
-<div class="text-xs text-on-surface-variant font-medium mt-1 truncate">Проектов (Web, боты, 3D)</div>
-</div>
-</div>
-<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl border border-surface-container/60 min-w-0">
-<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-secondary shadow-xs shrink-0">
-<span class="material-symbols-outlined text-[22px]">task_alt</span>
-</div>
-<div class="min-w-0 flex-1">
-<div class="text-xl font-extrabold text-on-surface tracking-tight leading-none whitespace-nowrap">100%</div>
-<div class="text-xs text-on-surface-variant font-medium mt-1 truncate">Соблюдение ТЗ и сроков</div>
-</div>
-</div>
-<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl border border-surface-container/60 min-w-0">
-<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary-container shadow-xs shrink-0">
-<span class="material-symbols-outlined text-[22px]">verified_user</span>
-</div>
-<div class="min-w-0 flex-1">
-<div class="text-xl font-extrabold text-on-surface tracking-tight leading-none whitespace-nowrap">14 дней</div>
-<div class="text-xs text-on-surface-variant font-medium mt-1 truncate">Гарантия после сдачи</div>
-</div>
-</div>
-<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl border border-surface-container/60 min-w-0">
-<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-tertiary shadow-xs shrink-0">
-<span class="material-symbols-outlined text-[22px]">handshake</span>
-</div>
-<div class="min-w-0 flex-1">
-<div class="text-xl font-extrabold text-on-surface tracking-tight leading-none whitespace-nowrap">1 на 1</div>
-<div class="text-xs text-on-surface-variant font-medium mt-1 truncate">Прямой диалог с автором</div>
-</div>
-</div>
-</div>
+
 </section>
 <!-- 3 Key Pillars -->
 <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -794,7 +799,7 @@
 <label class="block text-xs font-semibold text-on-surface-variant mb-1">Телефон или Telegram (@username)</label>
 <input class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-surface-container text-xs text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" id="order-contact" placeholder="@lets_start_acting или +375 (29) 838-68-50" required="" type="text">
 </div>
-<button class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-primary-container text-white text-xs sm:text-sm font-bold hover:bg-primary transition shadow-sm mt-1 whitespace-nowrap" type="submit">
+<button class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-primary-container text-white text-xs sm:text-sm font-bold hover:bg-primary transition shadow-sm mt-1 whitespace-nowrap shimmer-cta" type="submit">
 <span class="material-symbols-outlined text-[18px] shrink-0">send</span>
               Отправить заявку в Telegram
             </button>
@@ -1107,7 +1112,9 @@
   </script>
 
 
-</body><div class="dictionaries-tooltip" style="display: none;">
+
+
+<div class="dictionaries-tooltip" style="display: none;">
     <div class="fairydict-spinner">
     <div class="fairydict-bounce1"></div>
     <div class="fairydict-bounce2"></div>
@@ -1115,4 +1122,4 @@
     </div>
     <div class="dictionaries-tooltip-content">
     </div>
-</div></html>
+</div></body></html>
